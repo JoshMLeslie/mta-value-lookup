@@ -1,0 +1,32 @@
+<!-- component outlet -->
+<ng-container *ngTemplateOutlet="remainingValue ? showVal : getVal; context: {value: remainingValue}"></ng-container>
+
+<!-- Inverse for testing -->
+<!-- <ng-container *ngTemplateOutlet="remainingValue ? getVal : showVal; context: {value: remainingValue}"></ng-container> -->
+
+<ng-template #getVal>
+  <mat-card fxLayout="column" fxLayoutAlign="center center"
+  class="br-0-5">
+    <mat-form-field>
+      <mat-label>Card number</mat-label>
+      <input matInput [(ngModel)]="cardNumberInput" placeholder="xxxx-xxxx-xxxx-xxxx">
+    </mat-form-field>
+
+    <button mat-flat-button
+            class="center-content"
+            [style.height] ="'2.29375rem'"
+            [style.width] ="'5.75rem'"
+            [disabled]="cardNumberInput.length === 0"
+            (click)="getValue()">
+      <span *ngIf="!loadingValue">Get value</span>
+      <mat-spinner *ngIf="loadingValue" diameter="25"></mat-spinner>
+    </button>
+  </mat-card>
+</ng-template>
+
+<ng-template #showVal let-value="value">
+  <app-mta-card
+    style="display: flex;"
+    [value]="value"
+    (newCard)="handleNewCard()"></app-mta-card>
+</ng-template>

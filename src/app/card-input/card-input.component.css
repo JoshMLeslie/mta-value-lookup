@@ -1,0 +1,11 @@
+.refresh-icon {
+  position: absolute;
+  bottom: 0.8rem;
+  right: 0.6rem;
+  background: none;
+  border: none;
+}
+
+.refresh-icon ::ng-deep path {
+  fill: white;
+}
